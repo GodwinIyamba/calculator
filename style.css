@@ -1,15 +1,3 @@
-/* CSS HEX */
-:root {
-  --raisin-black: #22252dff;
-  --raisin-black-2: #292d36ff;
-  --gunmetal: #272b33ff;
-  --candy-pink: #ea6666ff;
-  --white: #ffffffff;
-  --cultured: #f7f7f7ff;
-  --cultured-2: #f7f7f7ff;
-  --cultured-3: #f9f9f9ff;
-}
-
 html {
   box-sizing: border-box;
 }
