@@ -1,0 +1,152 @@
+/* CSS HEX */
+:root {
+  --raisin-black: #22252dff;
+  --raisin-black-2: #292d36ff;
+  --gunmetal: #272b33ff;
+  --candy-pink: #ea6666ff;
+  --white: #ffffffff;
+  --cultured: #f7f7f7ff;
+  --cultured-2: #f7f7f7ff;
+  --cultured-3: #f9f9f9ff;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: montserrat;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CALCULATOR */
+
+.calculator {
+  border: 1px solid black;
+  background-color: #22252dff;
+  width: 380px;
+  height: 700px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* MODE */
+
+.theme-switch {
+  width: 114px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 11px;
+  overflow: hidden;
+  background-color: #292d36ff;
+  margin-top: 30px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
+}
+
+.theme {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffffff;
+  background-color: transparent;
+  border: none;
+  flex: 1;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.grey {
+  color: rgb(138, 138, 138);
+}
+
+/* DISPLAY */
+
+.screen {
+  height: 200px;
+  color: #ffffff;
+  text-align: right;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calc {
+  font-size: 24px;
+  margin-top: auto;
+}
+
+.result {
+  font-size: 42px;
+  font-weight: 900;
+}
+
+/* BUTTONS */
+
+.buttons {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  background-color: #292d36ff;
+  width: 100%;
+  border-radius: 30px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.dev {
+  display: flex;
+  align-items: center;
+}
+
+.copy {
+  font-size: 16px;
+  font-weight: 400;
+  color: #26c9aeff;
+  text-transform: capitalize;
+  text-align: left;
+  margin-right: 30px;
+}
+
+.btn {
+  width: 50px;
+  padding: 10px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+}
+
+.color {
+  color: #ea6666ff;
+}
+
+.btn-click {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
