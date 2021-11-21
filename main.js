@@ -9,6 +9,7 @@ const equals =  document.querySelector('[data-number="equals"]');
 let value = "";
 let firstValue = 0;
 let secondValue = 0;
+let interimValue = 0;
 let operator = "";
 
 //FUNCTIONS
@@ -53,15 +54,16 @@ function operation(val) {
     } else if(val ===  'x')  {
         value += "";
         operator += 'multiplication';
-    } else {
-        value += val;
-    }
+    } 
 }
 
 function reset() {
     calculate.textContent = "";
     result.textContent = "";
     value = "";
+    firstValue = 0;
+    secondValue = 0;
+    interimValue = 0;
 }
 
 function calcClear() {
@@ -75,40 +77,70 @@ function resultClear() {
     operator = "";
 }
 
-function populate() {
-    reset();
+
+numberBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    input = e.target.textContent;
+    value += input;
+    calculate.textContent = value;
+})) 
+
+operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    input = e.target.textContent;
+    operation(input)
+    firstValue = Number(value);
+    result.textContent = value;
+    calcClear()
+
+    console.log(firstValue)
+}))
+
+equals.addEventListener('click', (e) => {
+    secondValue = Number(value);
+    result.textContent = operate(operator, firstValue, secondValue);
+    resultClear();
     
-    numberBtns.forEach(btn => btn.addEventListener('click', (e) => {
-            input = e.target.textContent;
-            value += input;
-            calculate.textContent = value;
-            // firstValue = Number(secondValue);
-        })) 
+    console.log(operator)
+    console.log(firstValue)
+    console.log(secondValue)
 
-    operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {
-        input = e.target.textContent;
-        operation(input)
-        firstValue = Number(value);
-        result.textContent = value;
-        calcClear()
-        s
+})
 
-        console.log(firstValue)
-    }))
-
-    equals.addEventListener('click', (e) => {
-        secondValue = Number(value);
-        result.textContent = operate(operator, firstValue, secondValue);
-        resultClear();
-        
-        console.log(operator)
-        console.log(firstValue)
-        console.log(secondValue)
-
-    })
-}
     
 //EVENT LISTENERS
-window.addEventListener('load', populate)
+window.addEventListener('load', reset)
 resetBtn.addEventListener('click', reset)
 
+
+
+// if(!(firstValue === 0) && (secondValue === 0)) {
+//         input = e.target.textContent;
+//         operation(input);
+//         secondValue = Number(value);
+//         result.textContent = equality(operator, firstValue, secondValue);
+//         interimResult = Number(result.textContent);
+
+//         console.log(`operator: ${operator}`);
+//         console.log(`first: ${firstValue}`);
+//         console.log(`second ${secondValue}`);
+//         console.log(`interim: ${interimResult}`)
+//         firstValue = interimResult;
+//         secondValue = 0;
+
+//         resultClear();
+//     } 
+//     else if(!(firstValue === 0) && !(secondValue === 0)){
+//         firstValue = interimResult;
+//         input = e.target.textContent;
+//         operation(input);
+//         secondValue = Number(value);
+//         result.textContent = equality(operator, firstValue, secondValue);
+//         interimResult = Number(result.textContent);
+
+
+//         console.log(`operator ${operator}`);
+//         console.log(`first: ${firstValue}`);
+//         console.log(`second ${secondValue}`);
+//         console.log(`interim: ${interimResult}`)
+
+//         resultClear();
+//     }
