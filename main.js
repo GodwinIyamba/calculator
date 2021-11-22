@@ -111,14 +111,6 @@ operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {
         result.textContent = Number(equality(oldOperator, firstValue, secondValue));
         interimValue = Number(equality(oldOperator, firstValue, secondValue));
          calcClear();
-        
-        // console.log(`old operator: ${oldOperator}`)
-        // console.log(`new operator: ${newOperator}`)
-        // console.log(`first: ${firstValue}`);
-        // console.log(`second ${secondValue}`);
-        // console.log(`interim: ${interimValue}`)
-
-        
     } 
     else if(!(firstValue === 0) && !(secondValue === 0)){
         firstValue = interimValue;
@@ -129,27 +121,27 @@ operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {
         input = e.target.textContent;
         newOperator = operation(input);
         calcClear();
-
-        // console.log(`calculate ${calculate.textContent}`)
-
-        // console.log(`old operator: ${oldOperator}`)
-        // console.log(`new operator: ${newOperator}`)
-        // console.log(`first: ${firstValue}`);
-        // console.log(`second: ${secondValue}`);
-        // console.log(`interim: ${interimValue}`)
-        // // resultClear();
-
-    } 
-
+    }
 }))
 
-equals.addEventListener('click', (e) => {
-    secondValue = Number(value);
-    result.textContent = operate(operator, firstValue, secondValue);
-    resultClear();
+equals.addEventListener('click', () => {
+    if(!(firstValue === 0) && (secondValue === 0)) {
+        secondValue = Number(value);
+        result.textContent = operate(oldOperator, firstValue, secondValue);
+        interimValue = Number(equality(oldOperator, firstValue, secondValue));
+        resultClear();
+    } else if(!(firstValue === 0) && !(secondValue === 0)){
+        firstValue = interimValue;
+        secondValue = Number(value);
+        oldOperator = newOperator
+        result.textContent = Number(equality(oldOperator, firstValue, secondValue));
+        interimValue = Number(equality(oldOperator, firstValue, secondValue));
+        input = e.target.textContent;
+        newOperator = operation(input);
+        calcClear();
+    }
 })
 
-    
 //EVENT LISTENERS
 window.addEventListener('load', reset)
 resetBtn.addEventListener('click', reset)
