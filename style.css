@@ -44,7 +44,7 @@ body {
   flex-direction: column;
 }
 
-.calculate {
+.calculation {
   height: 25px;
   font-size: 24px;
   margin-top: auto;
@@ -125,8 +125,4 @@ body {
 }
 .color {
   color: #ea6666ff;
-}
-
-.disable {
-  cursor: no-drop;
 }
