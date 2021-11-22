@@ -10,7 +10,8 @@ let value = "";
 let firstValue = 0;
 let secondValue = 0;
 let interimValue = 0;
-let operator = "";
+let oldOperator = "";
+let newOperator = "";
 
 //FUNCTIONS
 function addition(a, b) {
@@ -44,17 +45,28 @@ function operate(fxn, a, b) {
 function operation(val) {
     if(val ===  '+')  {
         value += "";
-        operator += 'addition';
+        return 'addition';
     } else if(val ===  '-')  {
         value += "";
-        operator += 'subtraction';
+        return 'subtraction';
     } else if(val ===  '/')  {
         value += "";
-        operator += 'division';
+        return 'division';
     } else if(val ===  'x')  {
         value += "";
-        operator += 'multiplication';
+        return 'multiplication';
     } 
+}
+
+function equality(fxn, a, b) {
+    b = Number(value);
+    return operate(fxn, a, b)
+}
+
+function updateDisplay(e) {
+    input = e.target.textContent;
+    value += input;
+    calculate.textContent = value;
 }
 
 function reset() {
@@ -64,6 +76,7 @@ function reset() {
     firstValue = 0;
     secondValue = 0;
     interimValue = 0;
+    oldOperator = "";
 }
 
 function calcClear() {
@@ -72,37 +85,68 @@ function calcClear() {
 }
 
 function resultClear() {
-    calculate.textContent ="";
+    calculate.textContent = "";
     value = "";
-    operator = "";
+    oldOperator = "";
 }
 
 
 numberBtns.forEach(btn => btn.addEventListener('click', (e) => {
-    input = e.target.textContent;
-    value += input;
-    calculate.textContent = value;
+        updateDisplay(e);
 })) 
 
-operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {
-    input = e.target.textContent;
-    operation(input)
-    firstValue = Number(value);
-    result.textContent = value;
-    calcClear()
+operatorBtns.forEach(btn => btn.addEventListener('click', (e) => {  
+    if(firstValue === 0 && secondValue === 0){
+        firstValue = Number(value);
+        result.textContent = Number(value);
+        input = e.target.textContent;
+        oldOperator = operation(input);
+        calcClear()
+    }
+    else if(!(firstValue === 0) && (secondValue === 0)) {
+        calculate.textContent = Number(value);
+        secondValue = Number(value);
+        input = e.target.textContent;
+        newOperator = operation(input);
+        result.textContent = Number(equality(oldOperator, firstValue, secondValue));
+        interimValue = Number(equality(oldOperator, firstValue, secondValue));
+         calcClear();
+        
+        // console.log(`old operator: ${oldOperator}`)
+        // console.log(`new operator: ${newOperator}`)
+        // console.log(`first: ${firstValue}`);
+        // console.log(`second ${secondValue}`);
+        // console.log(`interim: ${interimValue}`)
 
-    console.log(firstValue)
+        
+    } 
+    else if(!(firstValue === 0) && !(secondValue === 0)){
+        firstValue = interimValue;
+        secondValue = Number(value);
+        oldOperator = newOperator
+        result.textContent = Number(equality(oldOperator, firstValue, secondValue));
+        interimValue = Number(equality(oldOperator, firstValue, secondValue));
+        input = e.target.textContent;
+        newOperator = operation(input);
+        calcClear();
+
+        // console.log(`calculate ${calculate.textContent}`)
+
+        // console.log(`old operator: ${oldOperator}`)
+        // console.log(`new operator: ${newOperator}`)
+        // console.log(`first: ${firstValue}`);
+        // console.log(`second: ${secondValue}`);
+        // console.log(`interim: ${interimValue}`)
+        // // resultClear();
+
+    } 
+
 }))
 
 equals.addEventListener('click', (e) => {
     secondValue = Number(value);
     result.textContent = operate(operator, firstValue, secondValue);
     resultClear();
-    
-    console.log(operator)
-    console.log(firstValue)
-    console.log(secondValue)
-
 })
 
     
@@ -110,37 +154,3 @@ equals.addEventListener('click', (e) => {
 window.addEventListener('load', reset)
 resetBtn.addEventListener('click', reset)
 
-
-
-// if(!(firstValue === 0) && (secondValue === 0)) {
-//         input = e.target.textContent;
-//         operation(input);
-//         secondValue = Number(value);
-//         result.textContent = equality(operator, firstValue, secondValue);
-//         interimResult = Number(result.textContent);
-
-//         console.log(`operator: ${operator}`);
-//         console.log(`first: ${firstValue}`);
-//         console.log(`second ${secondValue}`);
-//         console.log(`interim: ${interimResult}`)
-//         firstValue = interimResult;
-//         secondValue = 0;
-
-//         resultClear();
-//     } 
-//     else if(!(firstValue === 0) && !(secondValue === 0)){
-//         firstValue = interimResult;
-//         input = e.target.textContent;
-//         operation(input);
-//         secondValue = Number(value);
-//         result.textContent = equality(operator, firstValue, secondValue);
-//         interimResult = Number(result.textContent);
-
-
-//         console.log(`operator ${operator}`);
-//         console.log(`first: ${firstValue}`);
-//         console.log(`second ${secondValue}`);
-//         console.log(`interim: ${interimResult}`)
-
-//         resultClear();
-//     }
